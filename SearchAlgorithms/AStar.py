@@ -1,12 +1,13 @@
 from abc import ABC,abstractmethod
 import logging
 
-VALORE = 0
-F = 1
-G = 2
-PADRE = 3
-
 class AStar(ABC):
+
+    # Macro(s)
+    VALORE = 0
+    F = 1
+    G = 2
+    PADRE = 3
 
     def __init__(self,StartState,GoalState):
         self.StartState = StartState
@@ -30,18 +31,18 @@ class AStar(ABC):
             index = self.SearchLowest(queue)
             CurrentNode = queue.pop(index)
 
-            if CurrentNode[VALORE] in visited: continue
-            visited.append(CurrentNode[VALORE])
+            if CurrentNode[self.VALORE] in visited: continue
+            visited.append(CurrentNode[self.VALORE])
 
             logging.debug(f"Step n.{CurrentStep}, posizione attuale:")
-            logging.debug(f"Valutazione della posizione: {self.CalculateHeuristic(CurrentNode[VALORE])}")
-            logging.debug(f"f(n) = {CurrentNode[F]}")
-            logging.debug(f"Depth: {CurrentNode[G]}\n")
+            logging.debug(f"Valutazione della posizione: {self.CalculateHeuristic(CurrentNode[self.VALORE])}")
+            logging.debug(f"f(n) = {CurrentNode[self.F]}")
+            logging.debug(f"Depth: {CurrentNode[self.G]}\n")
 
-            if CurrentNode[VALORE] == self.GoalState:
+            if CurrentNode[self.VALORE] == self.GoalState:
                 return CurrentNode
             
-            NewNodes = self.ExpandNode(CurrentNode[VALORE])
+            NewNodes = self.ExpandNode(CurrentNode[self.VALORE])
             for Node in NewNodes:
                 g = self.CalculateCostToPath(CurrentNode,Node)
                 f = g + self.CalculateHeuristic(Node)
@@ -79,8 +80,8 @@ class AStar(ABC):
 
         while i < len(StateList):
 
-            if StateList[i][F] < lowest:
-                lowest = StateList[i][F]
+            if StateList[i][self.F] < lowest:
+                lowest = StateList[i][self.F]
                 LowestNodeIndex = i
             
             i+=1

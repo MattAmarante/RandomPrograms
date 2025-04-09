@@ -2,11 +2,6 @@ from SearchAlgorithms.AStar import AStar
 import random
 from copy import deepcopy
 
-VALORE = 0
-F = 1
-G = 2
-PADRE = 3
-
 class NPuzzle(AStar):
 
     def __init__(self,StartState:list[list[int]] = [],GoalState:list[list[int]] = [],MatrixDim:int = 3,BlankSpace = 0):
@@ -45,7 +40,7 @@ class NPuzzle(AStar):
         """
         Il costo per un passo è sempre unitario
         """
-        return PreviousNode[G]+1
+        return PreviousNode[AStar.G]+1
     
     def ExpandNode(self,CurrentState:list[list[int]]) -> list:
         """
@@ -219,14 +214,14 @@ class NPuzzle(AStar):
         - Node: una tupla che contiene (Matrice,f(n),depth,Padre)
         """
         
-        if Node[PADRE] == None:
-            print(f"\nStep n.{Node[G]}:")
-            self.PrintPosition(Node[VALORE])
+        if Node[AStar.PADRE] == None:
+            print(f"\nStep n.{Node[AStar.G]}:")
+            self.PrintPosition(Node[AStar.VALORE])
             return 
 
-        self.PrintPath(Node[PADRE])
-        print(f"\nStep n.{Node[G]}:")
-        self.PrintPosition(Node[VALORE])
+        self.PrintPath(Node[AStar.PADRE])
+        print(f"\nStep n.{Node[AStar.G]}:")
+        self.PrintPosition(Node[AStar.VALORE])
 
 if __name__ == "__main__":
     Game = NPuzzle()
