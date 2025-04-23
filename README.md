@@ -1,2 +1,2 @@
-# Repo Condivisa
-Repository che utilizzo per condividere alcuni file con amici o altre persone
+# Uni Repository
+Repo used to share notes and code to my friends :)
